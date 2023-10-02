@@ -18,5 +18,20 @@ services:
         exclude:
             - '../src/Shared/Kernel.php'
 
-    # add more service definitions when explicit configuration is needed
-    # please note that last definitions always *replace* previous ones
+    _instanceof:
+        # services whose classes are instances of CustomInterface will be tagged automatically
+        App\Geocoding\Infrastructure\Geocoder\GeocoderInterface:
+            tags: [ 'app.geocoder' ]
+        App\Shared\Domain\Bus\Command\CommandHandler:
+            tags: [ 'app.command_handler' ]
+        App\Shared\Domain\Bus\Query\QueryHandler:
+            tags: [ 'app.query_handler' ]
+
+    App\Geocoding\Infrastructure\Geocoder\Strategy\GeocoderContext:
+        arguments: [ !tagged app.geocoder ]
+
+    App\Shared\Infrastructure\Bus\Command\InMemorySymfonyCommandBus:
+        arguments: [ !tagged app.command_handler ]
+
+    App\Shared\Infrastructure\Bus\Query\InMemorySymfonyQueryBus:
+        arguments: [ !tagged app.query_handler ]

@@ -108,11 +108,17 @@ purge: ## Purge cache and logs
 up: ## Start the docker hub (PHP, caddy)
 	$(DOCKER_COMPOSE) up --detach
 
+ps: ## List of the all started docker containers
+	$(DOCKER_COMPOSE) ps
+
 build: ## Builds the images (PHP, caddy)
 	$(DOCKER_COMPOSE) build --pull --no-cache
 
 down: ## Stop the docker hub
 	$(DOCKER_COMPOSE) down --remove-orphans
+
+restart: ## Restart all containers
+	$(DOCKER_COMPOSE) restart
 
 sh: ## Log to the docker container
 	@$(EXEC_PHP) sh

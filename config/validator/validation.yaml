@@ -1,0 +1,23 @@
+App\Geocoding\Domain\ValueObject\Address:
+  properties:
+    countryCode:
+      - NotBlank: ~
+      - Type: string
+      - Length:
+          min: 2
+          max: 2
+    city:
+      - Type: string
+      - Length:
+          min: 0
+          max: 255
+    street:
+      - Type: string
+      - Length:
+          min: 0
+          max: 255
+    postcode:
+      - Type: string
+      - Length:
+          min: 0
+          max: 16

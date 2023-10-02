@@ -1,6 +1,6 @@
 [![SWUbanner](https://raw.githubusercontent.com/vshymanskyy/StandWithUkraine/main/banner2-direct.svg)](https://supportukrainenow.org/)
 
-# Microservice template for modern PHP applications
+# Technical task
 
 [![CodeScene Code Health](https://codescene.io/projects/39797/status-badges/code-health)](https://codescene.io/projects/39797)
 [![CodeScene System Mastery](https://codescene.io/projects/39797/status-badges/system-mastery)](https://codescene.io/projects/39797)
@@ -18,28 +18,28 @@
 - Configured testing tools: [PHPUnit](https://phpunit.de/), [Behat](https://docs.behat.org/)
 - Much more!
 
-## Why you might need it
-Many PHP developers need to create new projects from scratch and spend a lot of time. 
-
-We decided to simplify this exhausting process and create a public template for modern PHP applications. This template is used for all our microservices in VilnaCRM.
-
-## License
-This software is distributed under the [Creative Commons Zero v1.0 Universal](https://creativecommons.org/publicdomain/zero/1.0/deed) license. Please read [LICENSE](https://github.com/VilnaCRM-Org/php-service-template/blob/main/LICENSE) for information on the software availability and distribution.
-
 ### Minimal installation
 You can clone this repository locally or use Github functionality "Use this template"
 
 Install the latest [docker](https://docs.docker.com/engine/install/) and [docker compose](https://docs.docker.com/compose/install/)
 
-Use `make` command to set up project and automatically install all needed dependencies
+Create `.env.local` and fill the empty values
+> cp .env .env.local
+
+Use the `make` command to set up a project and automatically install all needed dependencies
 > make start
 
+Wait a few minutes for the first attempt to allow scripts to automatically install all dependencies and initialize the database structure
+
+Also, you can monitor installing progress using the command
+> make logs
+
 Go to browser and open the link below
-> https://localhost/api/docs
+> https://localhost/docs
 
-That's it. You should now be ready to use PHP service template!
+That's it. You should now be ready to use this service
 
-## Using
+## Using cli
 You can use `make` command to easily control and work with project locally.
 
 Execute `make` or `make help` to see the full list of project commands.
@@ -85,36 +85,16 @@ stop                         Stop docker and the Symfony binary server
 up                           Start the docker hub (PHP, caddy)
 ```
 
-## Documentation
-Start reading at the [GitHub wiki](https://github.com/VilnaCRM-Org/php-service-template/wiki). If you're having trouble, head for [the troubleshooting guide](https://github.com/VilnaCRM-Org/php-service-template/wiki/Troubleshooting) as it's frequently updated.
-
-You can generate complete API-level documentation by running `phpdoc` in the top-level folder, and documentation will appear in the `docs` folder, though you'll need to have [PHPDocumentor](http://www.phpdoc.org) installed.
-
-If the documentation doesn't cover what you need, search the [many questions on Stack Overflow](http://stackoverflow.com/questions/tagged/vilnacrm), and before you ask a question, [read the troubleshooting guide](https://github.com/VilnaCRM-Org/php-service-template/wiki/Troubleshooting).
-
 ## Tests
-[Tests](https://github.com/VilnaCRM-Org/php-service-template/tree/main/tests/) use PHPUnit 9 and [Behat](https://github.com/Behat/Behat).
+Tests use PHPUnit 9 and [Behat](https://github.com/Behat/Behat).
 
-[![Test status](https://github.com/VilnaCRM-Org/php-service-template/workflows/Tests/badge.svg)](https://github.com/VilnaCRM-Org/php-service-template/actions)
+### How to setup
 
-If this isn't passing, is there something you can do to help?
+Create `.env.test.local` and fill the empty values
+> cp .env.test .env.test.local
 
-## Security
-Please disclose any vulnerabilities found responsibly – report security issues to the maintainers privately.
+Run e2e tests using behat
+> make behat
 
-See [SECURITY](https://github.com/VilnaCRM-Org/php-service-template/tree/main/SECURITY.md) and [Security advisories on GitHub](https://github.com/VilnaCRM-Org/php-service-template/security).
-
-## Contributing
-Please submit bug reports, suggestions, and pull requests to the [GitHub issue tracker](https://github.com/VilnaCRM-Org/php-service-template/issues).
-
-We're particularly interested in fixing edge cases, expanding test coverage, and updating translations.
-
-If you found a mistake in the docs, or want to add something, go ahead and amend the wiki – anyone can edit it.
-
-## Sponsorship
-Development time and resources for this repository are provided by [VilnaCRM](https://vilnacrm.com/), the free and opensource CRM system.
-
-Donations are very welcome, whether in beer 🍺, T-shirts 👕, or cold, hard cash 💰. Sponsorship through GitHub is a simple and convenient way to say "thank you" to maintainers and contributors – just click the "Sponsor" button [on the project page](https://github.com/VilnaCRM-Org/php-service-template). If your company uses this template, consider taking part in the VilnaCRM's enterprise support program.
-
-## Changelog
-See [changelog](CHANGELOG.md).
+Run unit tests using phpunit
+> make phpunit

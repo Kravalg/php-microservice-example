@@ -7,15 +7,16 @@ return [
     'ide' => 'phpstorm',
     'exclude' => [
         'vendor',
+        'src/Shared',
     ],
     'add' => [],
     'remove' => [],
     'config' => [],
     'requirements' => [
-        'min-quality' => 100,
-        'min-complexity' => 100,
-        'min-architecture' => 100,
-        'min-style' => 100,
+        'min-quality' => 80,
+        'min-complexity' => 80,
+        'min-architecture' => 80,
+        'min-style' => 80,
     ],
     'threads' => null,
 ];

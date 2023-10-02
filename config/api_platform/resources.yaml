@@ -1,0 +1,114 @@
+resources:
+  App\Geocoding\Domain\ValueObject\Coordinates:
+    operations:
+      find_coordinates:
+        class: ApiPlatform\Metadata\Get
+        method: GET
+        uriTemplate: /coordinates
+        controller: App\Controller\FindCoordinates\MainController
+        provider: App\Geocoding\Infrastructure\Provider\AddressProvider
+        openapiContext:
+          summary: 'Get coordinates from the address'
+          description: 'Retrieves a Coordinates resource.'
+          parameters:
+            - name: 'countryCode'
+              type: 'string'
+              in: 'query'
+              required: false
+            - name: 'city'
+              type: 'string'
+              in: 'query'
+              required: false
+            - name: 'street'
+              type: 'string'
+              in: 'query'
+              required: false
+            - name: 'postcode'
+              type: 'string'
+              in: 'query'
+              required: false
+          responses:
+            200:
+              description: 'Coordinates resource'
+              content:
+                application/json:
+                  schema:
+                    $ref: '#/components/schemas/Coordinates.jsonld'
+            400:
+              description: 'Invalid input'
+            404:
+              description: 'Coordinates not found'
+      find_coordinates_gmaps:
+        class: ApiPlatform\Metadata\Get
+        method: GET
+        uriTemplate: /gmaps
+        controller: App\Controller\FindCoordinates\GMapsController
+        provider: App\Geocoding\Infrastructure\Provider\AddressProvider
+        openapiContext:
+          summary: 'Get coordinates from the address using the Google Maps'
+          description: 'Retrieves a Coordinates resource.'
+          parameters:
+            - name: 'countryCode'
+              type: 'string'
+              in: 'query'
+              required: false
+            - name: 'city'
+              type: 'string'
+              in: 'query'
+              required: false
+            - name: 'street'
+              type: 'string'
+              in: 'query'
+              required: false
+            - name: 'postcode'
+              type: 'string'
+              in: 'query'
+              required: false
+          responses:
+            200:
+              description: 'Coordinates resource'
+              content:
+                application/json:
+                  schema:
+                    $ref: '#/components/schemas/Coordinates.jsonld'
+            400:
+              description: 'Invalid input'
+            404:
+              description: 'Coordinates not found'
+      find_coordinates_hmaps:
+        class: ApiPlatform\Metadata\Get
+        method: GET
+        uriTemplate: /hmaps
+        controller: App\Controller\FindCoordinates\HMapsController
+        provider: App\Geocoding\Infrastructure\Provider\AddressProvider
+        openapiContext:
+          summary: 'Get coordinates from the address using the Here Maps'
+          description: 'Retrieves a Coordinates resource.'
+          parameters:
+            - name: 'countryCode'
+              type: 'string'
+              in: 'query'
+              required: false
+            - name: 'city'
+              type: 'string'
+              in: 'query'
+              required: false
+            - name: 'street'
+              type: 'string'
+              in: 'query'
+              required: false
+            - name: 'postcode'
+              type: 'string'
+              in: 'query'
+              required: false
+          responses:
+            200:
+              description: 'Coordinates resource'
+              content:
+                application/json:
+                  schema:
+                    $ref: '#/components/schemas/Coordinates.jsonld'
+            400:
+              description: 'Invalid input'
+            404:
+              description: 'Coordinates not found'
